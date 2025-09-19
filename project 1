@@ -1,0 +1,31 @@
+def solution(n,m, figures):
+  block_shapes = {
+    'A':[(0,0)],
+    'B':[(0,0),(0,1),(0,2)],
+    'C':[(0,0),(0,1),(1,0),(1,1)],
+    'D':[(0,1),(1,0),(1,1),(1,2)],
+    'E':[(0,1),(1,0),(1,1),(2,1)],
+    }
+  #Create empty grid of 0s grid = [[0 for _ in range(m)] for _ in range(n)]
+  #Try to place each figure in order for index,fig in enumarate(figures)
+  shape = block_shapes[figures]
+  placed = False
+  #Scan every cell in the grid to find a place to fit the shape
+  for r in range(n):
+    for c in range(m):
+      can_place = True
+      #Check it all the blocks of the shape fit and are free
+      for dr , dc in shape:
+        nr ,nc = r + dr, c + dc
+        if nr >= n or nc >= m or grid[nr][nc] != 0:
+          can_place = False
+          break
+          #If it fits, place it using (index + 1)
+          if can_place:
+            for dr , dc in shape:
+              grid[r + dr][c + dc] = index + 1
+              placed = True
+              break
+              #Move to next figure if placed:
+              break
+              return grid
